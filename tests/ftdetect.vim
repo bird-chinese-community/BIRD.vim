@@ -29,6 +29,10 @@ call s:CheckNamed('bluebird.conf', '', 'unrelated filename is not detected')
 
 call s:CheckConf(['protocol evpn fabric {'], 'bird2', 'latest protocol is strong evidence')
 call s:CheckConf(['protocol aggregator aggregate_routes {'], 'bird2', 'aggregator is detected')
+call s:CheckConf(['ipv6 sadr table source_specific;'], 'bird2', 'source-specific table is detected')
+call s:CheckConf(['eth table layer2_routes;'], 'bird2', 'Ethernet table is detected')
+call s:CheckConf(['neighbor table peers;'], 'bird2', 'neighbor table is detected')
+call s:CheckConf(['ipv4-mpls table labels;'], '', 'address-family label is not a table type')
 call s:CheckConf(['table users {'], '', 'one generic table is insufficient')
 call s:CheckConf(
   \ ['filter import_filter {', '  export all;'],
@@ -58,6 +62,20 @@ setlocal filetype=conf
 call setline(1, ['protocol bridge fabric {'])
 doautocmd BufRead upgraded.conf
 call assert_equal('bird2', &l:filetype, 'generic conf filetype is upgraded')
+bwipeout!
+
+new
+setlocal filetype=conf
+call setline(1, ['protocol evpn fabric {'])
+doautocmd FileType conf
+call assert_equal('bird2', &l:filetype, 'FileType conf fallback upgrades the buffer')
+bwipeout!
+
+new
+setlocal filetype=conf
+call setline(1, ['protocol bridge fabric {'])
+doautocmd BufWritePost saved.conf
+call assert_equal('bird2', &l:filetype, 'BufWritePost upgrades newly populated configs')
 bwipeout!
 
 if !empty(v:errors)

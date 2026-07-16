@@ -35,7 +35,8 @@ augroup bird2_ftdetect
     let l:strong_patterns = [
       \ '^\s*router\s\+id\>',
       \ '^\s*\%(protocol\|template\)\s\+' . l:protocols . '\>',
-      \ '^\s*\%(ipv4\|ipv6\|vpn4\|vpn6\|flow4\|flow6\|roa4\|roa6\|aspa\|mpls\|evpn\)\%(-\%(mc\|mpls\|sadr\)\)\?\s\+table\>',
+      \ '^\s*\%(ipv4\|ipv6\|vpn4\|vpn6\|flow4\|flow6\|roa4\|roa6\|eth\|aspa\|evpn\|mpls\|neighbor\)\s\+table\>',
+      \ '^\s*ipv6\s\+sadr\s\+table\>',
       \ ]
     let l:signal_patterns = {
       \ 'filter': '^\s*filter\s\+\S\+',
@@ -93,5 +94,6 @@ augroup bird2_ftdetect
     endfor
   endfunction
 
-  autocmd BufRead,BufNewFile *.conf call s:Bird2MaybeSetFiletype()
+  autocmd BufRead,BufNewFile,BufWritePost *.conf call s:Bird2MaybeSetFiletype()
+  autocmd FileType conf call s:Bird2MaybeSetFiletype()
 augroup END
