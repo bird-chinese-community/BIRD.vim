@@ -2,7 +2,7 @@
 
 Author:  BIRD Chinese Community <dev-bird@xmsl.dev>
 License: MPL-2.0
-Version: 1.0.9
+Version: 1.0.12
 
 ==============================================================================
 CONTENTS					*bird2-contents*
@@ -21,13 +21,13 @@ CONTENTS					*bird2-contents*
 INTRODUCTION					*bird2-introduction*
 
 The bird2.vim plugin provides syntax highlighting and filetype detection for
-BIRD2 (BIRD Internet Routing Daemon) configuration files.
+BIRD 2 and BIRD 3 (BIRD Internet Routing Daemon) configuration files.
 
 BIRD is a dynamic IP routing daemon supporting IPv4 and IPv6 protocols,
 including BGP, OSPF, RIP, and static routing.
 
 Features:
-	- Full syntax highlighting for BIRD2 configuration
+	- Syntax highlighting aligned with BIRD 2.19 and BIRD 3.3
 	- Automatic filetype detection
 	- Heuristic detection for generic .conf files
 	- Filetype plugin with sensible defaults
@@ -72,16 +72,16 @@ FILETYPE DETECTION				*bird2-filetype-detection*
 The plugin automatically detects BIRD2 configuration files by:
 
 EXTENSIONS ~
-	*.bird, *.bird2, *.bird3, *.bird*.conf
+	*.bird, *.bird2, *.bird3, *.bird.conf, *.bird2.conf, *.bird3.conf
 
 FILENAMES ~
-	bird.conf, bird6.conf
+	bird.conf, bird2.conf, bird3.conf, bird6.conf, bird-*.conf
 
 CONTENT HEURISTICS ~
-	For generic .conf files, the plugin scans the first 200 lines for:
-	- Protocol definitions (protocol bgp, ospf, rip, etc.)
-	- Keywords: router id, template, filter, function, table
-	- Flow/ROA table definitions
+	For generic .conf files, the plugin scans the first 200 lines. BIRD-only
+	protocols, typed tables, and router id are strong signals. Otherwise two
+	independent policy/declaration signals are required to avoid false positives.
+	Comments are ignored, and an existing non-conf filetype is preserved.
 
 To verify filetype detection: >
 	:verbose set ft?
@@ -112,8 +112,7 @@ KEYWORDS ~
 
 PROTOCOLS ~
 	bgp, ospf, rip, device, direct, kernel, pipe, babel, radv, rpki, bfd,
-	bmp,
-	static, l3vpn, mrt, perf
+	bmp, static, l3vpn, mrt, perf, aggregator, bridge, evpn
 
 DATA TYPES ~
 	- Integers: 42, 0x1a
@@ -160,6 +159,12 @@ vscode-bird2 ~
 
 ==============================================================================
 CHANGELOG					*bird2-changelog*
+
+1.0.12 (2026-07-16)~
+	- Align keywords, enums, CLI phrases, attributes, and operators with current
+	  BIRD 2.19 and BIRD 3.3 source trees
+	- Add scored content detection with bounded comment-aware scanning
+	- Implement working buffer-local comment mappings without changing cwd
 
 1.0.9 (2026-03-06)~
 	- Add local/neighbor statement highlighting for symbolic ASNs
