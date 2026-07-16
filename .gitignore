@@ -1,4 +1,5 @@
 # Vim swap files
+.worktrees/
 *.swp
 *.swo
 *.swn
