@@ -12,6 +12,9 @@ call setline(1, [
   \ 'kbr_source = KBR_SRC_DYNAMIC;',
   \ 'debug events;',
   \ 'trie yes;',
+  \ 'if bt_check_assign(net, 1) then accept;',
+  \ 'route net = 10.0.0.0/8{16,24};',
+  \ 'route net = ::/0;',
   \ ])
 
 function! s:Group(line, needle) abort
@@ -31,6 +34,10 @@ call assert_equal('bird2AddressFamilyConst', s:Group(5, 'AF_IPV6'), 'address fam
 call assert_equal('bird2BridgeSourceConst', s:Group(6, 'KBR_SRC_DYNAMIC'), 'bridge enum')
 call assert_equal('bird2DiagnosticsPhraseKw', s:Group(7, 'debug'), 'debug CLI phrase')
 call assert_equal('bird2TablePhraseKw', s:Group(8, 'trie'), 'trie table option')
+call assert_equal('bird2BuiltinFunc', s:Group(9, 'bt_check_assign'), 'BIRD test builtin')
+call assert_equal('bird2Prefix', s:Group(10, '10.0.0.0/8{16,24}'), 'IPv4 prefix range')
+call assert_equal('bird2Prefix', s:Group(10, '{16,24}'), 'IPv4 prefix range suffix')
+call assert_equal('bird2Prefix', s:Group(11, '::/0'), 'compressed IPv6 prefix')
 
 if !empty(v:errors)
   for error in v:errors
