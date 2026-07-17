@@ -1,4 +1,4 @@
-# bird2.vim
+# BIRD.vim
 
 <div align="center">
 
@@ -13,9 +13,12 @@ English | [简体中文](README.zh-CN.md)
 
 ## Overview
 
-`bird2.vim` provides Vim syntax highlighting, filetype detection, and filetype plugin support for BIRD 2 and BIRD 3 configuration files.
+`BIRD.vim` provides Vim syntax highlighting, filetype detection, and filetype plugin support for BIRD 2 and BIRD 3 configuration files.
 
 This is the Vim plugin component of the [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) project by the BIRD Chinese Community.
+
+> [!NOTE]
+> This repository was renamed from `BIRD2.vim` to reflect support for both BIRD 2 and BIRD 3. GitHub redirects the old URL, while the `bird2` filetype, runtime filenames, mappings, and configuration variables remain compatible.
 
 ## Features
 
@@ -29,34 +32,61 @@ This is the Vim plugin component of the [BIRD-tm-language-grammar](https://githu
 ### Using vim-plug
 
 ```vim
-Plug 'bird-chinese-community/bird2.vim'
+Plug 'bird-chinese-community/BIRD.vim'
 ```
 
 ### Using Vundle
 
 ```vim
-Plugin 'bird-chinese-community/bird2.vim'
+Plugin 'bird-chinese-community/BIRD.vim'
 ```
 
 ### Using pack.nvim (Neovim/Vim 8+)
 
 ```vim
-packadd! bird2.vim
+packadd! BIRD.vim
 ```
 
 Or manually clone to your pack directory:
 
 ```bash
-git clone https://github.com/bird-chinese-community/bird2.vim \
-  ~/.vim/pack/plugins/start/bird2.vim
+git clone https://github.com/bird-chinese-community/BIRD.vim \
+  ~/.vim/pack/plugins/start/BIRD.vim
 ```
 
 ### Manual Installation
 
 ```bash
-git clone https://github.com/bird-chinese-community/bird2.vim.git
-cd bird2.vim
+git clone https://github.com/bird-chinese-community/BIRD.vim.git
+cd BIRD.vim
 bash scripts/install.sh
+```
+
+## Updating
+
+GitHub redirects the former `BIRD2.vim` repository URL, so existing checkouts continue to fetch. Update the repository name in your plugin-manager configuration, then refresh it:
+
+```vim
+" vim-plug
+:PlugUpdate BIRD.vim
+
+" Vundle
+:PluginUpdate
+```
+
+For a native package checkout:
+
+```bash
+git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
+```
+
+For an existing manual checkout that still uses the old directory name, update its remote and rerun the installer:
+
+```bash
+git -C /path/to/bird2.vim remote set-url origin \
+  https://github.com/bird-chinese-community/BIRD.vim.git
+git -C /path/to/bird2.vim pull --ff-only
+bash /path/to/bird2.vim/scripts/install.sh
 ```
 
 ## Filetype Detection
@@ -114,7 +144,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Related Projects
 
 - [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) - TextMate grammar for BIRD 2 and BIRD 3
-- [bird2.nvim](https://github.com/bird-chinese-community/bird2.nvim) - Neovim plugin
+- [BIRD.nvim](https://github.com/bird-chinese-community/BIRD.nvim) - Neovim plugin
 - [vscode-bird2](https://github.com/bird-chinese-community/vscode-bird2-conf) - VS Code extension
 
 ## Acknowledgments

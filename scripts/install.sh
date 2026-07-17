@@ -12,15 +12,15 @@ else
   BOLD=""; RESET=""; BLUE=""; GREEN=""; YELLOW=""; RED=""
 fi
 
-info() { echo -e "${BLUE}[bird2.vim]${RESET} $*"; }
-ok()   { echo -e "${GREEN}[bird2.vim]${RESET} $*"; }
-warn() { echo -e "${YELLOW}[bird2.vim]${RESET} $*"; }
-err()  { echo -e "${RED}[bird2.vim]${RESET} $*" >&2; }
+info() { echo -e "${BLUE}[BIRD.vim]${RESET} $*"; }
+ok()   { echo -e "${GREEN}[BIRD.vim]${RESET} $*"; }
+warn() { echo -e "${YELLOW}[BIRD.vim]${RESET} $*"; }
+err()  { echo -e "${RED}[BIRD.vim]${RESET} $*" >&2; }
 
 usage() {
   cat <<'EOF'
 Usage: scripts/install.sh [--vim-dir PATH]
-Install bird2.vim to your Vim runtime directory.
+Install BIRD.vim to your Vim runtime directory.
 
 Options:
   --vim-dir PATH    Specify custom Vim directory (default: ~/.vim)
@@ -41,7 +41,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-info "Installing bird2.vim to ${YELLOW}$VIM_HOME${RESET}..."
+info "Installing BIRD.vim to ${YELLOW}$VIM_HOME${RESET}..."
 
 # Create directories
 mkdir -p "$VIM_HOME/syntax" "$VIM_HOME/ftdetect" "$VIM_HOME/ftplugin" "$VIM_HOME/doc"

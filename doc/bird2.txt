@@ -1,4 +1,4 @@
-*bird2.txt*	BIRD2 Configuration Syntax for Vim
+*bird2.txt*	BIRD Configuration Syntax for Vim
 
 Author:  BIRD Chinese Community <dev-bird@xmsl.dev>
 License: MPL-2.0
@@ -9,18 +9,19 @@ CONTENTS					*bird2-contents*
 
     1. Introduction ................ |bird2-introduction|
     2. Installation ................ |bird2-installation|
-    3. Filetype Detection ......... |bird2-filetype-detection|
-    4. Configuration ............... |bird2-configuration|
-    5. Syntax Highlighting ........ |bird2-syntax|
-    6. Commands .................... |bird2-commands|
-    7. Mappings .................... |bird2-mappings|
-    8. Related Projects ............ |bird2-related|
-    9. Changelog ................... |bird2-changelog|
+    3. Updating ..................... |bird2-updating|
+    4. Filetype Detection ......... |bird2-filetype-detection|
+    5. Configuration ............... |bird2-configuration|
+    6. Syntax Highlighting ........ |bird2-syntax|
+    7. Commands .................... |bird2-commands|
+    8. Mappings .................... |bird2-mappings|
+    9. Related Projects ............ |bird2-related|
+   10. Changelog ................... |bird2-changelog|
 
 ==============================================================================
 INTRODUCTION					*bird2-introduction*
 
-The bird2.vim plugin provides syntax highlighting and filetype detection for
+The BIRD.vim plugin provides syntax highlighting and filetype detection for
 BIRD 2 and BIRD 3 (BIRD Internet Routing Daemon) configuration files.
 
 BIRD is a dynamic IP routing daemon supporting IPv4 and IPv6 protocols,
@@ -38,27 +39,27 @@ INSTALLATION					*bird2-installation*
 VIM-PLUG ~
 
 	Add to your .vimrc: >
-		Plug 'bird-chinese-community/bird2.vim'
+		Plug 'bird-chinese-community/BIRD.vim'
 <
 
 VUNDLE ~
 
 	Add to your .vimrc: >
-		Plugin 'bird-chinese-community/bird2.vim'
+		Plugin 'bird-chinese-community/BIRD.vim'
 <
 
 PACK.NVIM (Vim 8+ / Neovim) ~
 
 	Clone to your pack directory: >
-		git clone https://github.com/bird-chinese-community/bird2.vim \
-		  ~/.vim/pack/plugins/start/bird2.vim
+		git clone https://github.com/bird-chinese-community/BIRD.vim \
+		  ~/.vim/pack/plugins/start/BIRD.vim
 <
 
 MANUAL ~
 
 	Run the install script: >
-		git clone https://github.com/bird-chinese-community/bird2.vim
-		cd bird2.vim
+		git clone https://github.com/bird-chinese-community/BIRD.vim
+		cd BIRD.vim
 		bash scripts/install.sh
 <
 
@@ -67,9 +68,35 @@ After installation, generate help tags: >
 <
 
 ==============================================================================
+UPDATING					*bird2-updating*
+
+BIRD.vim was renamed from BIRD2.vim. GitHub redirects the old repository URL,
+and the bird2 filetype, runtime filenames, mappings, and variables remain
+compatible. Update the repository name in your plugin-manager configuration.
+
+vim-plug: >
+	:PlugUpdate BIRD.vim
+<
+
+Vundle: >
+	:PluginUpdate
+<
+
+Native package: >
+	git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
+<
+
+For an existing checkout using the old directory name: >
+	git -C /path/to/bird2.vim remote set-url origin \
+	  https://github.com/bird-chinese-community/BIRD.vim.git
+	git -C /path/to/bird2.vim pull --ff-only
+	bash /path/to/bird2.vim/scripts/install.sh
+<
+
+==============================================================================
 FILETYPE DETECTION				*bird2-filetype-detection*
 
-The plugin automatically detects BIRD2 configuration files by:
+The plugin automatically detects BIRD 2 and BIRD 3 configuration files by:
 
 EXTENSIONS ~
 	*.bird, *.bird2, *.bird3, *.bird.conf, *.bird2.conf, *.bird3.conf
@@ -149,9 +176,9 @@ BIRD-tm-language-grammar ~
 	TextMate grammar for BIRD2
 	https://github.com/bird-chinese-community/bird-tm-language-grammar
 
-bird2.nvim ~
+BIRD.nvim ~
 	Neovim plugin with Lua support
-	https://github.com/bird-chinese-community/bird2.nvim
+	https://github.com/bird-chinese-community/BIRD.nvim
 
 vscode-bird2 ~
 	VS Code extension
