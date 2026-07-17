@@ -1,0 +1,119 @@
+# Changelog 🕊️
+
+<!-- markdownlint-disable MD024 -->
+
+All notable changes to BIRD.vim are documented in this file.
+
+本文记录 BIRD.vim 的重要变更。
+
+> The bundled syntax describes BIRD configuration syntax for editors. It does
+> not implement or claim coverage of upstream BIRD runtime semantic changes.
+
+<!-- changeset-release-marker -->
+
+## [1.0.13] - 2026-07-17
+
+`1.0.13` 由 [PR #3] 于 2026-07-17 合并，并内置已发布的
+[Vim Syntax 1.0.13-20260717] 语法快照。BIRD.vim 仓库本身尚未为该版本创建
+独立 GitHub Release。
+
+Version `1.0.13` was merged in [PR #3] on 2026-07-17 and embeds the published
+[Vim Syntax 1.0.13-20260717] snapshot. The BIRD.vim repository itself does not
+have a separate GitHub Release for this version.
+
+### ✨ Added / 新增
+
+- 🛰️ **BIRD 2.19 与 BIRD 3.3 配置语法** / **BIRD 2.19 and BIRD 3.3 configuration syntax**
+
+  同步当前与冷门关键字、枚举、CLI 短语、运行时/接口属性、BGP
+  hidden/unknown attributes、`mac` / `mac set` 类型及 `bt_check_assign`。
+
+  Synchronized current and uncommon keywords, enums, CLI phrases,
+  runtime/interface attributes, BGP hidden/unknown attributes, `mac` / `mac set`
+  types, and `bt_check_assign`.
+
+- 🧭 **精确名称与目录识别** / **Exact filename and directory detection**
+
+  新增 `.bird`、`.bird2`、`.bird3`、规范配置文件名，以及 `bird`、`bird2`、
+  `bird3` 配置目录的精确识别。
+
+  Added exact detection for `.bird`, `.bird2`, `.bird3`, canonical
+  configuration filenames, and files under `bird`, `bird2`, or `bird3`
+  configuration directories.
+
+- 💬 **可逆的注释映射** / **Reversible comment mappings**
+
+  新增 buffer-local 普通模式与可视模式注释映射，并保留用户已有的
+  `<Leader>c` 等映射；ftplugin 清理逻辑保持可逆。
+
+  Added buffer-local normal and visual comment mappings while preserving user
+  mappings such as `<Leader>c`; ftplugin cleanup remains reversible.
+
+### 🔧 Changed / 变更
+
+- 🔎 **有界、注释感知的启发式检测** / **Bounded, comment-aware heuristics**
+
+  通用 `.conf` 文件仅扫描前 200 行并忽略注释。BIRD 独有结构可直接命中，
+  较通用结构必须同时出现两个独立信号；已有的非 `conf` filetype 不会被覆盖。
+
+  Generic `.conf` files are scanned only through the first 200 lines with
+  comments ignored. BIRD-specific structures match directly, while generic
+  structures require two independent signals; existing non-`conf` filetypes
+  are preserved.
+
+- 🔄 **支持稍后写入的配置内容** / **Late-populated configuration support**
+
+  新增 `FileType conf` 与 `BufWritePost` 检测路径，可识别打开后才写入或生成的
+  BIRD 配置。
+
+  Added `FileType conf` and `BufWritePost` detection paths for BIRD
+  configurations populated or generated after opening.
+
+### 🐛 Fixed / 修复
+
+- 🐦 **降低通用 `.conf` 误识别** / **Reduced generic `.conf` false positives**
+
+  文件名仅包含 `bird` 不再触发识别，`bluebird.conf`、`hummingbird.conf` 以及
+  nginx、Apache 等配置不会因为单个弱信号而被误判。
+
+  A filename merely containing `bird` no longer triggers detection. Files such
+  as `bluebird.conf`, `hummingbird.conf`, and nginx or Apache configurations are
+  not classified from a single weak signal.
+
+- 🗃️ **typed table 识别边界** / **Typed-table detection boundaries**
+
+  正确识别 `eth table`、`neighbor table` 与 `ipv6 sadr table`，同时排除并非
+  table 声明的 address-family 标签。
+
+  Correctly recognizes `eth table`, `neighbor table`, and `ipv6 sadr table`
+  without treating address-family labels as table declarations.
+
+- 🧵 **字符串、操作符与前缀匹配** / **Strings, operators, and prefix matching**
+
+  修复双引号转义、位运算符冲突、压缩 IPv6 前缀和 IPv4/IPv6 prefix range，
+  并限制 IPv6 正则边界以避免异常长行产生额外开销。
+
+  Fixed double-quoted escapes, bitwise-operator collisions, compressed IPv6
+  prefixes, and IPv4/IPv6 prefix ranges, while bounding IPv6 matching on
+  unusually long lines.
+
+### 🧪 Verification / 验证
+
+- 新增 headless syntax group、filetype detection 与 ftplugin 回归测试。
+- Added headless syntax-group, filetype-detection, and ftplugin regressions.
+- CI 覆盖 Vim `v8.2.0000` 与 stable，且语法文件与共享 canonical snapshot
+  保持逐字节一致。
+- CI covers Vim `v8.2.0000` and stable and verifies that the syntax file is
+  byte-identical to the canonical shared snapshot.
+
+### 🔌 Compatibility / 兼容性
+
+- 对外 filetype 仍为 `bird2`；既有 autocmd、映射、配置变量、runtime 文件名与
+  `:help bird2` 均继续可用。
+- The public filetype remains `bird2`; existing autocmds, mappings,
+  configuration variables, runtime filenames, and `:help bird2` references
+  continue to work.
+
+[1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
+[PR #3]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
+[Vim Syntax 1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717
