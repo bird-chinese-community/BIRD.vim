@@ -74,9 +74,14 @@ GitHub redirects the former `BIRD2.vim` repository URL, so existing checkouts co
 :PluginUpdate
 ```
 
-For a native package checkout:
+For an existing native package checkout, rename its directory, update the
+remote, and then pull the latest version:
 
 ```bash
+mv ~/.vim/pack/plugins/start/bird2.vim \
+  ~/.vim/pack/plugins/start/BIRD.vim
+git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
+  https://github.com/bird-chinese-community/BIRD.vim.git
 git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 ```
 

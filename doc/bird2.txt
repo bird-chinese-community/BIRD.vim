@@ -82,7 +82,11 @@ Vundle: >
 	:PluginUpdate
 <
 
-Native package: >
+Native package (rename the old directory and update its remote): >
+	mv ~/.vim/pack/plugins/start/bird2.vim \
+	  ~/.vim/pack/plugins/start/BIRD.vim
+	git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
+	  https://github.com/bird-chinese-community/BIRD.vim.git
 	git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 <
 

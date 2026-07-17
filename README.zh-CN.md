@@ -74,9 +74,13 @@ GitHub 会重定向原 `BIRD2.vim` 仓库 URL，因此现有 checkout 仍可继�
 :PluginUpdate
 ```
 
-使用原生 package checkout 时：
+如果现有原生 package checkout 仍使用旧目录名，请重命名目录、更新 remote，再拉取最新版本：
 
 ```bash
+mv ~/.vim/pack/plugins/start/bird2.vim \
+  ~/.vim/pack/plugins/start/BIRD.vim
+git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
+  https://github.com/bird-chinese-community/BIRD.vim.git
 git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 ```
 
