@@ -63,7 +63,7 @@ bash scripts/install.sh
 
 每个 [GitHub Release](https://github.com/bird-chinese-community/BIRD.vim/releases)
 都附带可直接安装的 ZIP、tar.gz 和 `SHA256SUMS`。压缩包只包含 Vim runtime，
-并已生成 `doc/tags`。
+并已生成 `doc/tags`。完整包体约束与验证步骤参见[发布手册](RELEASING.md)。
 
 ## 更新
 

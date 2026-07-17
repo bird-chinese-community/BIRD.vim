@@ -105,40 +105,52 @@ function sha256(file) {
   return createHash("sha256").update(readFileSync(file)).digest("hex");
 }
 
-function generateHelpTags(stage) {
+function generateHelpTags(stage, allowHistoricalDuplicates = false) {
   const editor = process.env.VIM || "vim";
+  const command = `execute 'helptags ' . fnameescape('${join(stage, "doc").replaceAll("'", "''")}')`;
   run(editor, [
     "-Nu",
     "NONE",
     "-n",
     "-es",
     "-c",
-    `execute 'helptags ' . fnameescape('${join(stage, "doc").replaceAll("'", "''")}')`,
+    allowHistoricalDuplicates ? `silent! ${command}` : command,
     "-c",
     "qa!",
   ]);
 }
 
 function packageRelease(tag, outputArgument = "dist") {
-  const metadata = validateTag(tag);
+  return packageFromSource(tag, ROOT, "HEAD", outputArgument);
+}
+
+function packageFromSource(
+  tag,
+  sourceRoot,
+  sourceRef,
+  outputArgument = "dist",
+  allowHistoricalDuplicates = false,
+) {
+  const metadata = validateTag(tag, sourceRoot);
   const output = resolve(ROOT, outputArgument);
   const stage = mkdtempSync(join(tmpdir(), "bird-vim-release-"));
   mkdirSync(output, { recursive: true });
 
   try {
     for (const entry of RUNTIME_ENTRIES) {
-      const source = join(ROOT, entry);
+      const source = join(sourceRoot, entry);
+      if (entry === "CHANGELOG.md" && !existsSync(source)) continue;
       if (!existsSync(source)) fail(`required release entry is missing: ${entry}`);
       cpSync(source, join(stage, entry), { recursive: true });
     }
 
-    generateHelpTags(stage);
+    generateHelpTags(stage, allowHistoricalDuplicates);
     const files = walkFiles(stage);
     for (const required of REQUIRED_FILES) {
       if (!files.includes(required)) fail(`release package is missing ${required}`);
     }
 
-    const epoch = Number(run("git", ["show", "-s", "--format=%ct", "HEAD"], {
+    const epoch = Number(run("git", ["show", "-s", "--format=%ct", sourceRef], {
       cwd: ROOT,
       capture: true,
     }).trim());
@@ -183,6 +195,29 @@ function packageRelease(tag, outputArgument = "dist") {
   }
 }
 
+function packageRef(tag, sourceRef, outputArgument = "dist") {
+  parseTag(tag);
+  if (!sourceRef || sourceRef.startsWith("-")) {
+    fail("package-ref requires a safe Git commit, tag, or branch name");
+  }
+  const commit = run("git", ["rev-parse", "--verify", `${sourceRef}^{commit}`], {
+    cwd: ROOT,
+    capture: true,
+  }).trim();
+  const temporary = mkdtempSync(join(tmpdir(), "bird-vim-source-"));
+  const archive = join(temporary, "source.tar");
+  const sourceRoot = join(temporary, "source");
+  mkdirSync(sourceRoot);
+
+  try {
+    run("git", ["archive", "--format=tar", "--output", archive, commit], { cwd: ROOT });
+    run("tar", ["-xf", archive, "-C", sourceRoot]);
+    packageFromSource(tag, sourceRoot, commit, outputArgument, true);
+  } finally {
+    rmSync(temporary, { recursive: true, force: true });
+  }
+}
+
 function compareTrees(left, right) {
   const leftFiles = walkFiles(left);
   const rightFiles = walkFiles(right);
@@ -197,7 +232,7 @@ function compareTrees(left, right) {
   return leftFiles;
 }
 
-function smokeTest(root, version, fixture) {
+function smokeTest(root, fixture) {
   const vimrc = join(dirname(fixture), "verify.vim");
   writeFileSync(
     vimrc,
@@ -210,7 +245,6 @@ function smokeTest(root, version, fixture) {
       "if &l:filetype !=# 'bird2' | cquit | endif",
       "if &l:syntax !=# 'bird2' | cquit | endif",
       "if &l:commentstring !=# '# %s' | cquit | endif",
-      `if readfile($BIRD_RELEASE_ROOT . '/doc/bird2.txt')[4] !~# '${version}' | cquit | endif`,
       "qa!",
       "",
     ].join("\n"),
@@ -225,7 +259,7 @@ function smokeTest(root, version, fixture) {
 }
 
 function verifyRelease(tag, outputArgument = "dist") {
-  const metadata = validateTag(tag);
+  const metadata = parseTag(tag);
   const output = resolve(ROOT, outputArgument);
   const base = `${PROJECT}-${tag}`;
   const zipPath = join(output, `${base}.zip`);
@@ -257,10 +291,11 @@ function verifyRelease(tag, outputArgument = "dist") {
     for (const forbidden of FORBIDDEN_ENTRIES) {
       if (existsSync(join(zipRoot, forbidden))) fail(`verified package contains ${forbidden}`);
     }
+    validateTag(tag, zipRoot);
 
     const fixture = join(temporary, "bird.conf");
     writeFileSync(fixture, "router id 192.0.2.1;\nprotocol device {}\n");
-    smokeTest(zipRoot, metadata.version, fixture);
+    smokeTest(zipRoot, fixture);
     process.stdout.write(`Verified ${base}: ${files.length} files\n`);
   } finally {
     rmSync(temporary, { recursive: true, force: true });
@@ -268,7 +303,7 @@ function verifyRelease(tag, outputArgument = "dist") {
 }
 
 function writeReleaseNotes(tag, outputArgument = "release-notes.md") {
-  const metadata = validateTag(tag);
+  const metadata = parseTag(tag);
   const notes = run(process.execPath, [
     join(ROOT, "scripts", "changeset.mjs"),
     "notes",
@@ -302,16 +337,18 @@ function writeOutputs(metadata) {
 }
 
 function main() {
-  const [command, tag, argument] = process.argv.slice(2);
-  if (!command) fail("usage: release.mjs <current-tag|check|notes|package|verify|gha-outputs> [vX.Y.Z] [path]");
+  const [command, ...args] = process.argv.slice(2);
+  if (!command) fail("usage: release.mjs <current-tag|check|notes|package|package-ref|verify|gha-outputs> [...args]");
   if (command === "current-tag") {
     process.stdout.write(`v${runtimeVersion()}\n`);
     return;
   }
+  const [tag, argument, extra] = args;
   if (!tag) fail(`${command} requires a vX.Y.Z tag`);
   if (command === "check") process.stdout.write(`${JSON.stringify(validateTag(tag), null, 2)}\n`);
   else if (command === "notes") writeReleaseNotes(tag, argument);
   else if (command === "package") packageRelease(tag, argument);
+  else if (command === "package-ref") packageRef(tag, argument, extra);
   else if (command === "verify") verifyRelease(tag, argument);
   else if (command === "gha-outputs") writeOutputs(validateTag(tag));
   else fail(`unknown command: ${command}`);

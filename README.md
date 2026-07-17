@@ -64,7 +64,8 @@ bash scripts/install.sh
 
 Each [GitHub Release](https://github.com/bird-chinese-community/BIRD.vim/releases)
 includes a directly installable ZIP, tar.gz archive, and `SHA256SUMS`. The
-archives contain only the Vim runtime and include generated `doc/tags`.
+archives contain only the Vim runtime and include generated `doc/tags`. See the
+[release runbook](RELEASING.md) for the verified package contract.
 
 ## Updating
 
