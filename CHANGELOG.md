@@ -78,6 +78,15 @@ Release.
   Added `FileType conf` and `BufWritePost` detection paths for BIRD
   configurations populated or generated after opening.
 
+- 🧾 **引入可审计的变更片段** / **Adopt auditable change fragments**
+
+  新增零依赖的变更片段工作流，可在 PR 中记录语义版本级别和双语发布说明，
+  并在发布时按分类汇总到 CHANGELOG。
+
+  Added a dependency-free change-fragment workflow that records semantic
+  version bumps and bilingual release notes in pull requests, then groups them
+  into the changelog during release preparation.
+
 ### 🐛 Fixed / 修复
 
 - 🐦 **降低通用 `.conf` 误识别** / **Reduced generic `.conf` false positives**
@@ -117,6 +126,10 @@ Release.
 
 ### 🔌 Compatibility / 兼容性
 
+- 仓库由 BIRD2.vim 更名为 BIRD.vim，并提供 vim-plug、Vundle、原生 packages
+  与手动 checkout 的双语迁移步骤。
+- The repository was renamed from BIRD2.vim to BIRD.vim with bilingual
+  migration steps for vim-plug, Vundle, native packages, and manual checkouts.
 - 对外 filetype 仍为 `bird2`；既有 autocmd、映射、配置变量、runtime 文件名与
   `:help bird2` 均继续可用。
 - The public filetype remains `bird2`; existing autocmds, mappings,
