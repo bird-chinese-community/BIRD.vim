@@ -121,4 +121,83 @@ Release for this version.
   configuration variables, runtime filenames, and `:help bird2` references
   continue to work.
 
-[1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
+## [1.0.11] - 2026-06-11
+
+### 🔧 Changed / 变更
+
+- 🏷️ **同步语法快照版本** / **Synchronized syntax snapshot version**
+
+  将独立 Vim 插件中的语法版本更新为 `1.0.11-20260611`，与
+  BIRD-tm-language-grammar 同期发布的 Vim syntax 快照保持一致；本版本不改变
+  既有 filetype、映射或配置接口。
+
+  Updated the standalone Vim plugin to syntax snapshot `1.0.11-20260611`,
+  matching the Vim syntax release from BIRD-tm-language-grammar without
+  changing the existing filetype, mappings, or configuration interface.
+
+## [1.0.9] - 2026-03-06
+
+### 🐛 Fixed / 修复
+
+- 🛰️ **对齐 BGP neighbor 与 local AS 高亮** / **Aligned BGP neighbor and local AS highlighting**
+
+  修正 `neighbor` 与 `local as` 相关语法覆盖，使 Vim 高亮与解析器支持的 BGP
+  配置形式保持一致，并同步版本为 `1.0.9-20260306`。
+
+  Corrected syntax coverage around `neighbor` and `local as` so Vim
+  highlighting matches the BGP forms accepted by the parser, and synchronized
+  the snapshot version to `1.0.9-20260306`.
+
+## [1.0.8] - 2026-03-01
+
+### ✨ Added / 新增
+
+- 🔤 **扩展协议、属性与短语覆盖** / **Expanded protocol, property, and phrase coverage**
+
+  补充协议与地址关键字、CLI 多词短语、byte string 与属性规则，并完善 BIRD
+  配置中较少使用的语法元素。
+
+  Added protocol and address keywords, multi-word CLI phrases, byte-string
+  handling, property rules, and less common BIRD configuration constructs.
+
+### 🐛 Fixed / 修复
+
+- ⚙️ **修正操作符与 RPKI 高亮** / **Corrected operators and RPKI highlighting**
+
+  收紧操作符匹配，修正 `retry` 等 RPKI 关键字分类，并避免通用规则覆盖更具体
+  的语法组。
+
+  Tightened operator matching, corrected RPKI keyword classification including
+  `retry`, and prevented generic rules from shadowing more specific groups.
+
+## [1.0.7] - 2026-02-28
+
+### 🐛 Fixed / 修复
+
+- 🔐 **补齐 RPKI 协议关键字** / **Completed RPKI protocol keywords**
+
+  补充缺失的 RPKI 配置关键字并更新内置 vimdoc，使独立插件与
+  `1.0.7-20260228` 语法快照一致。
+
+  Added missing RPKI configuration keywords and updated the bundled vimdoc to
+  match syntax snapshot `1.0.7-20260228`.
+
+## [1.0.6] - 2025-12-24
+
+### ✨ Added / 新增
+
+- 🐦 **首个独立 Vim 插件版本** / **Initial standalone Vim plugin**
+
+  从 BIRD-tm-language-grammar 拆分出可独立安装的 Vim runtime，包含 BIRD 2
+  syntax、filetype detection、ftplugin、双语 README、vimdoc 与安装脚本。
+
+  Extracted a standalone Vim runtime from BIRD-tm-language-grammar with BIRD 2
+  syntax, filetype detection, an ftplugin, bilingual READMEs, vimdoc, and an
+  installation script.
+
+[1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.13
+[1.0.11]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.11
+[1.0.9]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.9
+[1.0.8]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.8
+[1.0.7]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.7
+[1.0.6]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.6
