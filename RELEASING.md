@@ -4,6 +4,10 @@ This repository publishes standard SemVer tags (`vX.Y.Z`) and root-installable
 ZIP and tar.gz archives. The attached archives are the supported installation
 artifacts; GitHub's automatic source archives remain useful for source review.
 
+Publishable archives must be produced on Linux with GNU tar, either in GitHub
+Actions or an isolated Debian container. Archives built locally on macOS are
+preflight artifacts only.
+
 本仓库使用标准 SemVer tag（`vX.Y.Z`），并发布可直接作为 Vim runtime 安装的
 ZIP 与 tar.gz 包。正式安装应优先使用 Release 附件；GitHub 自动生成的源码包
 主要用于源码审阅。
