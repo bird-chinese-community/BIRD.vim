@@ -85,7 +85,8 @@ git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
 git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 ```
 
-For an existing manual checkout that still uses the old directory name, update its remote and rerun the installer:
+For a manual checkout at another path, the directory name can remain unchanged;
+update its remote and rerun the installer:
 
 ```bash
 git -C /path/to/bird2.vim remote set-url origin \

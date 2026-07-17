@@ -90,7 +90,7 @@ Native package (rename the old directory and update its remote): >
 	git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 <
 
-For an existing checkout using the old directory name: >
+For a manual checkout at another path (the directory name may stay): >
 	git -C /path/to/bird2.vim remote set-url origin \
 	  https://github.com/bird-chinese-community/BIRD.vim.git
 	git -C /path/to/bird2.vim pull --ff-only
