@@ -1,0 +1,30 @@
+name: Vim compatibility
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Vim ${{ matrix.vim }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        vim: ["v8.2.0000", "stable"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          version: ${{ matrix.vim }}
+      - name: Source syntax
+        run: vim -Nu NONE -n -es -c 'set nomore' -c 'source syntax/bird2.vim' -c 'qa!'
+      - name: Test syntax groups
+        run: vim -Nu NONE -n -es -V1 -S tests/syntax.vim
+      - name: Test filetype detection
+        run: vim -Nu NONE -n -es -V1 -S tests/ftdetect.vim
+      - name: Test filetype plugin
+        run: vim -Nu NONE -n -es -V1 -S tests/ftplugin.vim

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**BIRD2 配置文件的 Vim 语法高亮插件**
+**BIRD 2 与 BIRD 3 配置文件的 Vim 语法高亮插件**
 
 [English](README.md) | 简体中文
 
@@ -13,13 +13,13 @@
 
 ## 概述
 
-`bird2.vim` 为 [BIRD2](https://bird.network.cz/) 配置文件提供 Vim 语法高亮、文件类型检测和文件类型插件支持。
+`bird2.vim` 为 BIRD 2 与 BIRD 3 配置文件提供 Vim 语法高亮、文件类型检测和文件类型插件支持。
 
 这是 [BIRD 中文社区](https://github.com/bird-chinese-community) 的 [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) 项目的 Vim 插件组件。
 
 ## 功能特性
 
-- 完整的 BIRD2 配置语法高亮
+- 与当前 BIRD 2.19 和 BIRD 3.3 对齐的配置语法高亮
 - 自动文件类型检测（`.bird`, `.bird2`, `.bird3`, `.conf` 等扩展名）
 - 对通用 `.conf` 文件的智能启发式检测
 - 文件类型特定设置（注释、格式选项等）
@@ -61,14 +61,12 @@ bash scripts/install.sh
 
 ## 文件类型检测
 
-插件通过以下方式自动检测 BIRD2 配置文件：
+插件通过以下方式自动检测 BIRD 2 与 BIRD 3 配置文件：
 
-- **扩展名**：`.bird`, `.bird2`, `.bird3`, `.bird*.conf`
-- **文件名**：`bird.conf`, `bird6.conf`
-- **内容检测**：扫描 `.conf` 文件的前 200 行，查找 BIRD2 特定模式：
-  - 协议定义（`protocol bgp`, `protocol ospf` 等）
-  - 关键字如 `router id`, `template`, `filter`, `function`
-  - Flow/ROA 表定义
+- **扩展名**：`.bird`、`.bird2`、`.bird3`
+- **文件名**：`bird.conf`、`bird2.conf`、`bird3.conf`、`bird6.conf`，以及明确的 `bird-*`/`*.bird*.conf` 变体
+- **已知路径**：位于 `bird`、`bird2` 或 `bird3` 目录下的配置文件
+- **内容检测**：扫描通用 `.conf` 文件的前 200 行；BIRD 独有结构会直接命中，通用结构需要两个独立信号，从而减少误判。
 
 ## 文档
 
@@ -115,7 +113,7 @@ autocmd BufRead,BufNewFile *.myext setfiletype bird2
 
 ## 相关项目
 
-- [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) - BIRD2 的 TextMate 语法
+- [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) - BIRD 2 与 BIRD 3 的 TextMate 语法
 - [bird2.nvim](https://github.com/bird-chinese-community/bird2.nvim) - Neovim 插件
 - [vscode-bird2](https://github.com/bird-chinese-community/vscode-bird2-conf) - VS Code 扩展
 
