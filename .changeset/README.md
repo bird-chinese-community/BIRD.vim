@@ -68,8 +68,9 @@ self-contained.
 
 4. Run the same command without `--dry-run`. It inserts the new bilingual
    section in `CHANGELOG.md` and deletes the consumed fragments.
-5. Review and commit the resulting release diff before creating any tag or
-   announcement.
+5. Review and commit the resulting release diff, then create the matching
+   standard SemVer tag (`v1.0.14`, for example). The Release workflow validates
+   that the tag matches the runtime version before publishing archives.
 
 The command intentionally does not modify Vim runtime files or create tags.
 Version and syntax-snapshot updates remain explicit release-review steps.

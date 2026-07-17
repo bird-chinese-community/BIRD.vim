@@ -16,17 +16,19 @@ All notable changes to BIRD.vim are documented in this file.
 
 ## [1.0.13] - 2026-07-17
 
-`1.0.13` 由 [PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
+`1.0.13` 的实现由 [PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
 于 2026-07-17 合并，并内置已发布的
 [Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
-语法快照。BIRD.vim 仓库本身尚未为该版本创建独立 GitHub Release。
+语法快照；这是 BIRD.vim 独立仓库首次补齐标准 SemVer tag、可安装包与
+GitHub Release 的版本。
 
-Version `1.0.13` was merged in
+The implementation for version `1.0.13` was merged in
 [PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3) on
 2026-07-17 and embeds the published
 [Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
-snapshot. The BIRD.vim repository itself does not have a separate GitHub
-Release for this version.
+snapshot. This is the first version for which the standalone BIRD.vim
+repository backfills a standard SemVer tag, installable archives, and a GitHub
+Release.
 
 ### ✨ Added / 新增
 
