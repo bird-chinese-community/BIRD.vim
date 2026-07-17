@@ -8,24 +8,31 @@ All notable changes to BIRD.vim are documented in this file.
 
 > The bundled syntax describes BIRD configuration syntax for editors. It does
 > not implement or claim coverage of upstream BIRD runtime semantic changes.
+>
+> 内置语法用于描述编辑器中的 BIRD 配置语法，不实现也不声称覆盖 BIRD 上游
+> 运行时语义变化。
 
 <!-- changeset-release-marker -->
 
 ## [1.0.13] - 2026-07-17
 
-`1.0.13` 由 [PR #3] 于 2026-07-17 合并，并内置已发布的
-[Vim Syntax 1.0.13-20260717] 语法快照。BIRD.vim 仓库本身尚未为该版本创建
-独立 GitHub Release。
+`1.0.13` 由 [PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
+于 2026-07-17 合并，并内置已发布的
+[Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
+语法快照。BIRD.vim 仓库本身尚未为该版本创建独立 GitHub Release。
 
-Version `1.0.13` was merged in [PR #3] on 2026-07-17 and embeds the published
-[Vim Syntax 1.0.13-20260717] snapshot. The BIRD.vim repository itself does not
-have a separate GitHub Release for this version.
+Version `1.0.13` was merged in
+[PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3) on
+2026-07-17 and embeds the published
+[Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
+snapshot. The BIRD.vim repository itself does not have a separate GitHub
+Release for this version.
 
 ### ✨ Added / 新增
 
 - 🛰️ **BIRD 2.19 与 BIRD 3.3 配置语法** / **BIRD 2.19 and BIRD 3.3 configuration syntax**
 
-  同步当前与冷门关键字、枚举、CLI 短语、运行时/接口属性、BGP
+  同步最新及较少使用的关键字、枚举、CLI 短语、运行时/接口属性、BGP
   hidden/unknown attributes、`mac` / `mac set` 类型及 `bt_check_assign`。
 
   Synchronized current and uncommon keywords, enums, CLI phrases,
@@ -115,5 +122,3 @@ have a separate GitHub Release for this version.
   continue to work.
 
 [1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
-[PR #3]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
-[Vim Syntax 1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717

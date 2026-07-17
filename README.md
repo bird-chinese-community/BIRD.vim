@@ -118,6 +118,10 @@ To regenerate help tags:
 :helptags ~/.vim/doc
 ```
 
+See the [changelog](CHANGELOG.md) for release history. Contributors should add
+a bilingual fragment following the [change-fragment guide](.changeset/README.md)
+for user-visible or release-worthy changes.
+
 ## Configuration
 
 No configuration is required. The plugin works out of the box.

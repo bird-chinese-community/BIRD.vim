@@ -116,6 +116,9 @@ bash /path/to/bird2.vim/scripts/install.sh
 :helptags ~/.vim/doc
 ```
 
+发布历史参见 [更新日志](CHANGELOG.md)。对于用户可见或需要进入发布说明的变更，
+贡献者应按照 [change fragment 指南](.changeset/README.md) 添加双语片段。
+
 ## 配置
 
 无需配置即可使用。
