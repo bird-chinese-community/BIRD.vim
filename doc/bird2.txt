@@ -2,7 +2,7 @@
 
 Author:  BIRD Chinese Community <dev-bird@xmsl.dev>
 License: MPL-2.0
-Version: 1.0.12
+Version: 1.0.13
 
 ==============================================================================
 CONTENTS					*bird2-contents*
@@ -160,7 +160,7 @@ vscode-bird2 ~
 ==============================================================================
 CHANGELOG					*bird2-changelog*
 
-1.0.12 (2026-07-16)~
+1.0.13 (2026-07-17)~
 	- Align keywords, enums, CLI phrases, attributes, and operators with current
 	  BIRD 2.19 and BIRD 3.3 source trees
 	- Add scored content detection with bounded comment-aware scanning
