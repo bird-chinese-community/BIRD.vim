@@ -39,3 +39,20 @@ jobs:
         run: vim -Nu NONE -n -es -V1 -S tests/ftdetect.vim
       - name: Test filetype plugin
         run: vim -Nu NONE -n -es -V1 -S tests/ftplugin.vim
+
+  release-package:
+    name: Release package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          version: stable
+      - name: Build and smoke-test archives
+        run: |
+          TAG=$(node scripts/release.mjs current-tag)
+          node scripts/release.mjs package "$TAG" dist
+          node scripts/release.mjs verify "$TAG" dist

@@ -8,6 +8,7 @@ English | [简体中文](README.zh-CN.md)
 
 [![License: MPL-2.0](https://img.shields.io/badge/License-MPL--2.0-blue.svg)](LICENSE)
 [![Vim](https://img.shields.io/badge/Vim-8.0+-green.svg)](https://www.vim.org/)
+[![GitHub Release](https://img.shields.io/github/v/release/bird-chinese-community/BIRD.vim)](https://github.com/bird-chinese-community/BIRD.vim/releases/latest)
 
 </div>
 
@@ -41,13 +42,10 @@ Plug 'bird-chinese-community/BIRD.vim'
 Plugin 'bird-chinese-community/BIRD.vim'
 ```
 
-### Using pack.nvim (Neovim/Vim 8+)
+### Using native packages (Vim 8+)
 
-```vim
-packadd! BIRD.vim
-```
-
-Or manually clone to your pack directory:
+Clone the repository into a `start` package directory; Vim loads it
+automatically during startup:
 
 ```bash
 git clone https://github.com/bird-chinese-community/BIRD.vim \
@@ -61,6 +59,13 @@ git clone https://github.com/bird-chinese-community/BIRD.vim.git
 cd BIRD.vim
 bash scripts/install.sh
 ```
+
+### Release archives
+
+Each [GitHub Release](https://github.com/bird-chinese-community/BIRD.vim/releases)
+includes a directly installable ZIP, tar.gz archive, and `SHA256SUMS`. The
+archives contain only the Vim runtime and include generated `doc/tags`. See the
+[release runbook](RELEASING.md) for the verified package contract.
 
 ## Updating
 

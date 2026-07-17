@@ -1,6 +1,7 @@
 {
   "project": "BIRD.vim",
   "changelog": "CHANGELOG.md",
+  "releaseLink": "https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v{version}",
   "categories": [
     {
       "id": "breaking",

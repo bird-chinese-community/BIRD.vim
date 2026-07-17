@@ -48,7 +48,7 @@ VUNDLE ~
 		Plugin 'bird-chinese-community/BIRD.vim'
 <
 
-PACK.NVIM (Vim 8+ / Neovim) ~
+NATIVE PACKAGES (Vim 8+) ~
 
 	Clone to your pack directory: >
 		git clone https://github.com/bird-chinese-community/BIRD.vim \
