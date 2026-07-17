@@ -1,4 +1,4 @@
-# bird2.vim
+# BIRD.vim
 
 <div align="center">
 
@@ -13,9 +13,12 @@
 
 ## 概述
 
-`bird2.vim` 为 BIRD 2 与 BIRD 3 配置文件提供 Vim 语法高亮、文件类型检测和文件类型插件支持。
+`BIRD.vim` 为 BIRD 2 与 BIRD 3 配置文件提供 Vim 语法高亮、文件类型检测和文件类型插件支持。
 
 这是 [BIRD 中文社区](https://github.com/bird-chinese-community) 的 [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) 项目的 Vim 插件组件。
+
+> [!NOTE]
+> 本仓库已从 `BIRD2.vim` 更名为 `BIRD.vim`，以体现同时支持 BIRD 2 与 BIRD 3。GitHub 会重定向旧 URL；`bird2` filetype、运行时文件名、映射和配置变量继续保持兼容。
 
 ## 功能特性
 
@@ -29,34 +32,65 @@
 ### 使用 vim-plug
 
 ```vim
-Plug 'bird-chinese-community/bird2.vim'
+Plug 'bird-chinese-community/BIRD.vim'
 ```
 
 ### 使用 Vundle
 
 ```vim
-Plugin 'bird-chinese-community/bird2.vim'
+Plugin 'bird-chinese-community/BIRD.vim'
 ```
 
 ### 使用 pack.nvim (Neovim/Vim 8+)
 
 ```vim
-packadd! bird2.vim
+packadd! BIRD.vim
 ```
 
 或手动克隆到 pack 目录：
 
 ```bash
-git clone https://github.com/bird-chinese-community/bird2.vim \
-  ~/.vim/pack/plugins/start/bird2.vim
+git clone https://github.com/bird-chinese-community/BIRD.vim \
+  ~/.vim/pack/plugins/start/BIRD.vim
 ```
 
 ### 手动安装
 
 ```bash
-git clone https://github.com/bird-chinese-community/bird2.vim.git
-cd bird2.vim
+git clone https://github.com/bird-chinese-community/BIRD.vim.git
+cd BIRD.vim
 bash scripts/install.sh
+```
+
+## 更新
+
+GitHub 会重定向原 `BIRD2.vim` 仓库 URL，因此现有 checkout 仍可继续拉取。建议先把插件管理器配置中的仓库名改为新名称，再执行更新：
+
+```vim
+" vim-plug
+:PlugUpdate BIRD.vim
+
+" Vundle
+:PluginUpdate
+```
+
+如果现有原生 package checkout 仍使用旧目录名，请重命名目录、更新 remote，再拉取最新版本：
+
+```bash
+mv ~/.vim/pack/plugins/start/bird2.vim \
+  ~/.vim/pack/plugins/start/BIRD.vim
+git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
+  https://github.com/bird-chinese-community/BIRD.vim.git
+git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
+```
+
+对于位于其他路径的手动 checkout，目录名可保持不变；更新 remote 后重新运行安装器：
+
+```bash
+git -C /path/to/bird2.vim remote set-url origin \
+  https://github.com/bird-chinese-community/BIRD.vim.git
+git -C /path/to/bird2.vim pull --ff-only
+bash /path/to/bird2.vim/scripts/install.sh
 ```
 
 ## 文件类型检测
@@ -114,7 +148,7 @@ autocmd BufRead,BufNewFile *.myext setfiletype bird2
 ## 相关项目
 
 - [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) - BIRD 2 与 BIRD 3 的 TextMate 语法
-- [bird2.nvim](https://github.com/bird-chinese-community/bird2.nvim) - Neovim 插件
+- [BIRD.nvim](https://github.com/bird-chinese-community/BIRD.nvim) - Neovim 插件
 - [vscode-bird2](https://github.com/bird-chinese-community/vscode-bird2-conf) - VS Code 扩展
 
 ## 鸣谢
