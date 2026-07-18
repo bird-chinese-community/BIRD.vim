@@ -14,21 +14,17 @@ All notable changes to BIRD.vim are documented in this file.
 
 <!-- changeset-release-marker -->
 
+## [1.0.14] - 2026-07-19
+
+### 🐛 Fixed / 修复
+
+- 🐛 **修复 MPL-2.0 许可证正文与识别信息** / **Fix MPL-2.0 license text and detection**
+
+  此前的 LICENSE 文件在标准 MPL-2.0 正文中混入了不相关条款，导致 GitHub 将仓库许可证识别为 “Other”，v1.0.13 安装包也携带了该错误正文。本版本恢复 Mozilla 发布的标准 MPL-2.0 全文，使仓库元数据和新生成的安装包一致、正确地声明 MPL-2.0。
+
+  The previous LICENSE file mixed unrelated clauses into the MPL-2.0 text, causing GitHub to identify the repository license as “Other” and the v1.0.13 archives to carry the incorrect text. This release restores Mozilla's canonical MPL-2.0 text so repository metadata and newly generated archives consistently declare MPL-2.0.
+
 ## [1.0.13] - 2026-07-17
-
-`1.0.13` 的实现由 [PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
-于 2026-07-17 合并，并内置已发布的
-[Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
-语法快照；这是 BIRD.vim 独立仓库首次补齐标准 SemVer tag、可安装包与
-GitHub Release 的版本。
-
-The implementation for version `1.0.13` was merged in
-[PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3) on
-2026-07-17 and embeds the published
-[Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
-snapshot. This is the first version for which the standalone BIRD.vim
-repository backfills a standard SemVer tag, installable archives, and a GitHub
-Release.
 
 ### ✨ Added / 新增
 
@@ -210,6 +206,7 @@ Release.
   syntax, filetype detection, an ftplugin, bilingual READMEs, vimdoc, and an
   installation script.
 
+[1.0.14]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.14
 [1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.13
 [1.0.11]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.11
 [1.0.9]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.9
