@@ -206,10 +206,10 @@ All notable changes to BIRD.vim are documented in this file.
   syntax, filetype detection, an ftplugin, bilingual READMEs, vimdoc, and an
   installation script.
 
+[1.0.14]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.14
 [1.0.13]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.13
 [1.0.11]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.11
 [1.0.9]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.9
 [1.0.8]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.8
 [1.0.7]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.7
 [1.0.6]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.6
-[1.0.14]: https://github.com/bird-chinese-community/BIRD.vim/releases/tag/v1.0.14
