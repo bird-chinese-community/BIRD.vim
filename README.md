@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".github/assets/icon-256.png" width="128" height="128" alt="BIRD.vim" />
+</p>
+
 # BIRD.vim
 
 <div align="center">
@@ -12,21 +16,23 @@ English | [简体中文](README.zh-CN.md)
 
 </div>
 
-## Overview
+## About
 
-`BIRD.vim` provides Vim syntax highlighting, filetype detection, and filetype plugin support for BIRD 2 and BIRD 3 configuration files.
+`BIRD.vim` provides syntax highlighting, filetype detection, and filetype plugin support for BIRD 2 and BIRD 3 configuration files.
 
-This is the Vim plugin component of the [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) project by the BIRD Chinese Community.
+This is the Vim plugin component of the [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) project.
 
 > [!NOTE]
-> This repository was renamed from `BIRD2.vim` to reflect support for both BIRD 2 and BIRD 3. GitHub redirects the old URL, while the `bird2` filetype, runtime filenames, mappings, and configuration variables remain compatible.
+> The repository was renamed from `BIRD2.vim` to reflect support for both BIRD 2 and BIRD 3. GitHub redirects the old URL; the `bird2` filetype, runtime filenames, mappings, and configuration variables remain compatible.
 
-## Features
+## Filetype Detection
 
-- Syntax highlighting aligned with current BIRD 2.19 and BIRD 3.3 syntax
-- Automatic filetype detection for `.bird`, `.bird2`, `.bird3`, and `.conf` files
-- Smart heuristic detection for generic `.conf` files
-- Filetype-specific settings (comments, format options, etc.)
+The plugin automatically detects BIRD 2 and BIRD 3 configuration files by:
+
+- File extensions: `.bird`, `.bird2`, `.bird3`, and files matching `*.bird*.conf`
+- Filenames: `bird.conf`, `bird2.conf`, `bird3.conf`, `bird6.conf`, `bird-*`, and similar patterns
+- Directory paths: files below `bird/`, `bird2/`, or `bird3/` directories
+- Content: scans the first 200 lines of `.conf` files. BIRD-specific constructs are accepted immediately; generic constructs require two independent matches to minimize false positives.
 
 ## Installation
 
@@ -69,7 +75,7 @@ archives contain only the Vim runtime and include generated `doc/tags`. See the
 
 ## Updating
 
-GitHub redirects the former `BIRD2.vim` repository URL, so existing checkouts continue to fetch. Update the repository name in your plugin-manager configuration, then refresh it:
+GitHub redirects the old `BIRD2.vim` URL, so existing checkouts continue to fetch. To update the plugin, first change the repository name in your plugin manager configuration, then run:
 
 ```vim
 " vim-plug
@@ -79,19 +85,16 @@ GitHub redirects the former `BIRD2.vim` repository URL, so existing checkouts co
 :PluginUpdate
 ```
 
-For an existing native package checkout, rename its directory, update the
-remote, and then pull the latest version:
+For a native package checkout, rename the directory, update the remote, and pull:
 
 ```bash
-mv ~/.vim/pack/plugins/start/bird2.vim \
-  ~/.vim/pack/plugins/start/BIRD.vim
+mv ~/.vim/pack/plugins/start/bird2.vim ~/.vim/pack/plugins/start/BIRD.vim
 git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
   https://github.com/bird-chinese-community/BIRD.vim.git
 git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
 ```
 
-For a manual checkout at another path, the directory name can remain unchanged;
-update its remote and rerun the installer:
+For a manual installation at another path, update the remote and rerun the installer:
 
 ```bash
 git -C /path/to/bird2.vim remote set-url origin \
@@ -99,15 +102,6 @@ git -C /path/to/bird2.vim remote set-url origin \
 git -C /path/to/bird2.vim pull --ff-only
 bash /path/to/bird2.vim/scripts/install.sh
 ```
-
-## Filetype Detection
-
-The plugin automatically detects BIRD 2 and BIRD 3 configuration files by:
-
-- **Extension**: `.bird`, `.bird2`, `.bird3`
-- **Filename**: `bird.conf`, `bird2.conf`, `bird3.conf`, `bird6.conf`, and explicit `bird-*`/`*.bird*.conf` variants
-- **Known paths**: configuration files below `bird`, `bird2`, or `bird3` directories
-- **Content**: scans the first 200 lines of generic `.conf` files. Strong BIRD-only constructs are accepted immediately; generic constructs require two independent signals to reduce false positives.
 
 ## Documentation
 
@@ -129,7 +123,7 @@ for user-visible or release-worthy changes.
 
 ## Configuration
 
-No configuration is required. The plugin works out of the box.
+No configuration is required. The plugin works without additional setup.
 
 ### Disable heuristic detection
 
@@ -149,12 +143,14 @@ autocmd BufRead,BufNewFile *.myext setfiletype bird2
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Submit a Pull Request.
 
 ## License
 
-- Plugin files: [Mozilla Public License 2.0](LICENSE)
-- Copyright (c) BIRD Chinese Community
+Plugin files: [Mozilla Public License 2.0](LICENSE)
+Copyright (c) BIRD Chinese Community (BIRDCC)
+
+BIRDCC is not affiliated with CZ.NIC, the maintainers of BIRD.
 
 ## Related Projects
 
