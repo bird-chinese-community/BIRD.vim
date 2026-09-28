@@ -16,21 +16,23 @@
 
 </div>
 
-## 概述
+## 介绍
 
-`BIRD.vim` 为 BIRD 2 与 BIRD 3 配置文件提供 Vim 语法高亮、文件类型检测和文件类型插件支持。
+`BIRD.vim` 为 BIRD 2 与 BIRD 3 配置文件提供语法高亮、文件类型检测和文件类型插件支持。
 
-这是 [BIRD 中文社区](https://github.com/bird-chinese-community) 的 [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) 项目的 Vim 插件组件。
+这是 [BIRD-tm-language-grammar](https://github.com/bird-chinese-community/bird-tm-language-grammar) 项目的 Vim 插件组件。
 
 > [!NOTE]
 > 本仓库已从 `BIRD2.vim` 更名为 `BIRD.vim`，以体现同时支持 BIRD 2 与 BIRD 3。GitHub 会重定向旧 URL；`bird2` filetype、运行时文件名、映射和配置变量继续保持兼容。
 
-## 功能特性
+## 文件类型检测
 
-- 与当前 BIRD 2.19 和 BIRD 3.3 对齐的配置语法高亮
-- 自动文件类型检测（`.bird`, `.bird2`, `.bird3`, `.conf` 等扩展名）
-- 对通用 `.conf` 文件的智能启发式检测
-- 文件类型特定设置（注释、格式选项等）
+插件通过以下方式自动检测 BIRD 2 与 BIRD 3 配置文件：
+
+- 文件扩展名：`.bird`, `.bird2`, `.bird3` 和匹配 `*.bird*.conf` 的文件
+- 文件名：`bird.conf`, `bird2.conf`, `bird3.conf`, `bird6.conf`、`bird-*` 等模式
+- 目录路径：位于 `bird/`, `bird2/` 或 `bird3/` 目录下的文件
+- 内容检测：扫描 `.conf` 文件的前 200 行。BIRD 独有结构会直接命中；通用结构需要两个独立的匹配信号来减少误判。
 
 ## 安装
 
@@ -71,7 +73,7 @@ bash scripts/install.sh
 
 ## 更新
 
-GitHub 会重定向原 `BIRD2.vim` 仓库 URL，因此现有 checkout 仍可继续拉取。建议先把插件管理器配置中的仓库名改为新名称，再执行更新：
+GitHub 会重定向原 `BIRD2.vim` 仓库 URL，现有 checkout 仍可继续拉取。先把插件管理器配置中的仓库名改为新名称，再执行更新：
 
 ```vim
 " vim-plug
@@ -84,8 +86,7 @@ GitHub 会重定向原 `BIRD2.vim` 仓库 URL，因此现有 checkout 仍可继�
 如果现有原生 package checkout 仍使用旧目录名，请重命名目录、更新 remote，再拉取最新版本：
 
 ```bash
-mv ~/.vim/pack/plugins/start/bird2.vim \
-  ~/.vim/pack/plugins/start/BIRD.vim
+mv ~/.vim/pack/plugins/start/bird2.vim ~/.vim/pack/plugins/start/BIRD.vim
 git -C ~/.vim/pack/plugins/start/BIRD.vim remote set-url origin \
   https://github.com/bird-chinese-community/BIRD.vim.git
 git -C ~/.vim/pack/plugins/start/BIRD.vim pull --ff-only
@@ -99,15 +100,6 @@ git -C /path/to/bird2.vim remote set-url origin \
 git -C /path/to/bird2.vim pull --ff-only
 bash /path/to/bird2.vim/scripts/install.sh
 ```
-
-## 文件类型检测
-
-插件通过以下方式自动检测 BIRD 2 与 BIRD 3 配置文件：
-
-- **扩展名**：`.bird`、`.bird2`、`.bird3`
-- **文件名**：`bird.conf`、`bird2.conf`、`bird3.conf`、`bird6.conf`，以及明确的 `bird-*`/`*.bird*.conf` 变体
-- **已知路径**：位于 `bird`、`bird2` 或 `bird3` 目录下的配置文件
-- **内容检测**：扫描通用 `.conf` 文件的前 200 行；BIRD 独有结构会直接命中，通用结构需要两个独立信号，从而减少误判。
 
 ## 文档
 
@@ -152,8 +144,10 @@ autocmd BufRead,BufNewFile *.myext setfiletype bird2
 
 ## 许可证
 
-- 插件文件：[Mozilla Public License 2.0](LICENSE)
-- 版权所有 (c) BIRD 中文社区
+插件文件：[Mozilla Public License 2.0](LICENSE)
+版权所有 (c) BIRD 中文社区 (BIRDCC)
+
+BIRDCC 与 BIRD 的维护方 CZ.NIC 没有隶属关系。
 
 ## 相关项目
 
